@@ -38,3 +38,5 @@ print ('entre 18 e 25: {:.2f}%'.format(faixa3/t))
 print ('entre 26 e 35: {:.2f}%'.format(faixa4/t))
 print ('entre 36 e 59: {:.2f}%'.format(faixa5/t))
 print ('acima de 60: {:.2f}%'.format(faixa6/t))
+
+print('Eric')
