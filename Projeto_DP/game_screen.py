@@ -55,6 +55,10 @@ def game_screen(window):
                     keys_down[event.key] = True
                     if event.key == pygame.K_LEFT:
                         player.speedx -= 8
+                    if event.key == pygame.K_UP:
+                        player.speedy -= 8
+                    if event.key == pygame.K_DOWN:
+                        player.speedy += 8
                     if event.key == pygame.K_RIGHT:
                         player.speedx += 8
                     if event.key == pygame.K_SPACE:
@@ -65,6 +69,10 @@ def game_screen(window):
                     if event.key in keys_down and keys_down[event.key]:
                         if event.key == pygame.K_LEFT:
                             player.speedx += 8
+                        if event.key == pygame.K_UP:
+                            player.speedy += 8
+                        if event.key == pygame.K_DOWN:
+                            player.speedy -= 8
                         if event.key == pygame.K_RIGHT:
                             player.speedx -= 8
 
