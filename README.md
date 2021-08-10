@@ -7,8 +7,8 @@ Nesse projeto, foi dada a tarefa de implementar novas funcionalidades ao jogo de
   - Criar uma tela de instruções, que mostra o que cada tecla faz;
   - Permitir movimento vertical (eixo y) da nave;
   - Implementar fundo que se move infinitamente;
+  - Aumente a quantidade de meteoros a cada 1000 pontos;
   - Tela de game over mostrando a pontuação;
-  - Armazenar as pontuações em um arquivo e mostrar as 5 maiores na tela de game over;
   - Reiniciar o jogo (inclusive a pontuação e vidas) quando o jogador apertar qualquer tecla na tela de game over.
 
 
