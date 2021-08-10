@@ -23,7 +23,8 @@ def game_screen(window):
     player = Ship(groups, assets)
     all_sprites.add(player)
     # Criando os meteoros
-    for i in range(8):
+    a = [0,0,0,0,0,0]
+    for i in range(len(a)):
         meteor = Meteor(assets)
         all_sprites.add(meteor)
         all_meteors.add(meteor)
@@ -97,6 +98,12 @@ def game_screen(window):
                 # Ganhou pontos!
                 score += 100
                 if score % 1000 == 0:
+                    for n in range(3):
+                        a.append(0)
+                    for i in range(3):
+                        meteor = Meteor(assets)
+                        all_sprites.add(meteor)
+                        all_meteors.add(meteor)
                     lives += 1
 
             # Verifica se houve colisão entre nave e meteoro
@@ -112,6 +119,9 @@ def game_screen(window):
                 keys_down = {}
                 explosion_tick = pygame.time.get_ticks()
                 explosion_duration = explosao.frame_ticks * len(explosao.explosion_anim) + 400
+                meteor = Meteor(assets)
+                all_sprites.add(meteor)
+                all_meteors.add(meteor)
         elif state == EXPLODING:
             now = pygame.time.get_ticks()
             if now - explosion_tick > explosion_duration:
