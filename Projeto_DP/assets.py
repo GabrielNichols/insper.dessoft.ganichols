@@ -19,7 +19,7 @@ PEW_SOUND = 'pew_sound'
 
 def load_assets():
     assets = {}
-    assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'starfield.png')).convert()
+    assets[BACKGROUND] = pygame.image.load(os.path.join(IMG_DIR, 'fundo.png')).convert()
     assets[INIT_FONT] = pygame.font.Font(os.path.join(FNT_DIR, 'inicial.ttf'), 28)
     assets[METEOR_IMG] = pygame.image.load(os.path.join(IMG_DIR, 'meteorBrown_med1.png')).convert_alpha()
     assets[METEOR_IMG] = pygame.transform.scale(assets['meteor_img'], (METEOR_WIDTH, METEOR_HEIGHT))

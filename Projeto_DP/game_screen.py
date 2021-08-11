@@ -38,6 +38,13 @@ def game_screen(window):
     score = 0
     lives = 3
 
+    world_speed = 4
+
+    background = assets[BACKGROUND]
+        # Redimensiona o fundo
+    background = pygame.transform.scale(background, (WIDTH, HEIGHT))
+    background_rect = background.get_rect()
+
     # ===== Loop principal =====
     pygame.mixer.music.play(loops=-1)
     while state != DONE and state != FINAL:
@@ -125,16 +132,28 @@ def game_screen(window):
             if now - explosion_tick > explosion_duration:
                 if lives == 0:
                     state = FINAL
-                    
                 else:
                     state = PLAYING
                     player = Ship(groups, assets)
                     all_sprites.add(player)
 
         # ----- Gera saídas
-        window.fill(BLACK)  # Preenche com a cor branca
-        window.blit(assets[BACKGROUND], (0, 0))
-        # Desenhando meteoros
+
+        # Carrega o fundo do jogo
+        background_rect.y += world_speed
+        print(background_rect.y)
+        # Se o fundo saiu da janela, faz ele voltar para dentro.
+        if background_rect.top > HEIGHT:
+            background_rect.y -= background_rect.height
+        # Desenha o fundo e uma cópia para baixo.
+        # Assumimos que a imagem selecionada ocupa pelo menos o tamanho da janela.
+        # Além disso, ela deve ser cíclica, ou seja, de cima para baixo.
+        window.blit(background, background_rect)
+        # Desenhamos a imagem novamente, mas deslocada da altura da imagem em y.
+        background_rect2 = background_rect.copy()
+        background_rect2.y -= background_rect2.height
+        window.blit(background, background_rect2)
+
         all_sprites.draw(window)
 
         # Desenhando o score

@@ -32,9 +32,8 @@ def final_screen(screen,score):
                 running = False
 
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_RETURN:
-                    state = 1
-                    running = False
+                state = 1
+                running = False
                     
 
         # A cada loop, redesenha o fundo e os sprites
