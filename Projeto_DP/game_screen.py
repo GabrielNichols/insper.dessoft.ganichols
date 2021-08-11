@@ -1,5 +1,5 @@
 import pygame
-from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED
+from config import FPS, WIDTH, HEIGHT, BLACK, YELLOW, RED, FINAL, QUIT
 from assets import load_assets, DESTROY_SOUND, BOOM_SOUND, BACKGROUND, SCORE_FONT
 from sprites import Ship, Meteor, Bullet, Explosion
 
@@ -23,8 +23,8 @@ def game_screen(window):
     player = Ship(groups, assets)
     all_sprites.add(player)
     # Criando os meteoros
-    a = [0,0,0,0,0,0]
-    for i in range(len(a)):
+
+    for i in range(6):
         meteor = Meteor(assets)
         all_sprites.add(meteor)
         all_meteors.add(meteor)
@@ -40,7 +40,7 @@ def game_screen(window):
 
     # ===== Loop principal =====
     pygame.mixer.music.play(loops=-1)
-    while state != DONE:
+    while state != DONE and state != FINAL:
         clock.tick(FPS)
 
         # ----- Trata eventos
@@ -98,8 +98,6 @@ def game_screen(window):
                 # Ganhou pontos!
                 score += 100
                 if score % 1000 == 0:
-                    for n in range(3):
-                        a.append(0)
                     for i in range(3):
                         meteor = Meteor(assets)
                         all_sprites.add(meteor)
@@ -126,7 +124,8 @@ def game_screen(window):
             now = pygame.time.get_ticks()
             if now - explosion_tick > explosion_duration:
                 if lives == 0:
-                    state = DONE
+                    state = FINAL
+                    
                 else:
                     state = PLAYING
                     player = Ship(groups, assets)
@@ -151,3 +150,8 @@ def game_screen(window):
         window.blit(text_surface, text_rect)
 
         pygame.display.update()  # Mostra o novo frame para o jogador
+    
+    if state == DONE:
+        return QUIT, score
+    else:
+        return state, score
