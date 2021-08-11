@@ -1,8 +1,8 @@
 import random
 import pygame
-from config import WIDTH, HEIGHT, METEOR_WIDTH, METEOR_HEIGHT, SHIP_WIDTH, SHIP_HEIGHT
+from config import WIDTH, HEIGHT, METEOR_WIDTH, METEOR_HEIGHT, SHIP_WIDTH, SHIP_HEIGHT, FNT_DIR, BLACK
 from assets import SHIP_IMG, PEW_SOUND, METEOR_IMG, BULLET_IMG, EXPLOSION_ANIM
-
+from os import path
 
 class Ship(pygame.sprite.Sprite):
     def __init__(self, groups, assets):
@@ -151,3 +151,22 @@ class Explosion(pygame.sprite.Sprite):
                 self.image = self.explosion_anim[self.frame]
                 self.rect = self.image.get_rect()
                 self.rect.center = center
+
+class texto_init(pygame.sprite.Sprite):
+    def __init__(self):
+        # Construtor da classe mãe (Sprite).
+        pygame.sprite.Sprite.__init__(self)
+        botao_iniciar = pygame.font.Font(path.join(FNT_DIR, 'inicial.ttf'), 28)
+        self.image = botao_iniciar.render('Pressione qualquer tecla', True, BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.x = 45
+        self.rect.y = 430
+        self.speedy = 1
+
+    def update(self):
+        self.rect.y += self.speedy
+        # novas posições e velocidades
+        if self.rect.top >= 450:
+            self.speedy = -1
+        if self.rect.top <= 430:
+            self.speedy = 1
